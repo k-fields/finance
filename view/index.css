@@ -1,0 +1,56 @@
+* {
+    /* border: 1px solid hotpink;  */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height:100vh;
+    --header-height: 20vh;
+}
+
+.header {
+    height: var(--header-height);
+    display:flex;
+    flex-direction: column;
+    border-bottom: 0.1rem solid black;
+}
+
+.dashboard {
+    /* border: 1px solid blue;*/
+    height: 80vh;
+    display:flex;
+}
+
+.dashboard > div{
+    width:50vw;
+    /* border:1px solid orange; */
+    display:flex;
+}
+
+.user{
+    margin-top:auto;
+}
+
+.title{
+    justify-self: center;
+    align-self: center;
+}
+
+.despesas-e-receitas, .gastos-fixos {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.gastos-fixos {
+    border-left:2px dashed black;
+}
+
+.dashboard-title{
+    height:5%;
+    /* border:.5px solid green; */
+    width:100%;
+    text-align: center;
+    text-decoration:underline;
+}
