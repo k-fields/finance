@@ -1,8 +1,9 @@
-const expenseEntry = require('./expenseEntry')
+const expenseEntry = require('./controller/controller')
+const fs = require('fs');
 
 const http = require('http')
-const url = 'http://192.168.1.200'
 const routes = {
+    '/':home,
     '/register':register,
     '/login':login,
     '/entry':entry,
@@ -16,6 +17,15 @@ function handleRequest(req,res) {
     const route = routes[pathname]; //assigns the corresponding function to the route constant
     if (route) {
         route(req,res);
+    }else if (pathname){
+        try{
+            console.log(`Looking for: ${pathname}`);
+            const file = fs.readFileSync('.'+pathname,'utf-8');
+            res.end(file);
+        }
+        catch (e){
+            console.error(`File ${pathname} not found.`)
+        }
     }
     else
     {
@@ -39,7 +49,7 @@ function entry(req,res){
 
     req.on('data', data => {body += data;});
     req.on('end', () => {
-        expenseEntry(body);
+        //pass the body to the controler.
         res.writeHead(200, {'Content-Type':'text/plain'});
         res.end('OK');
     })
@@ -57,6 +67,13 @@ function list(req,res){
 
 function dashboard(req,res){
     console.log("Not implemented.");
+}
+
+function home (req, res) {
+    const index = fs.readFileSync('./index.html','utf-8');
+    
+    res.writeHead(200, {'Content-Type':'text/html'})
+    res.end(index)
 }
 
 const server = http.createServer(handleRequest);
