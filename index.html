@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="./index.css" />
+        <script type="module" src="./view/expenseCard.js"></script>
         <title>Finance Tracker</title>
     </head>
     <body>
@@ -15,6 +16,13 @@
         <div class="dashboard">
             <div class="despesas-e-receitas">
                 <h3 class="dashboard-title">Lançamentos</h3>
+                <div class="cardspanel">
+                    <script>
+                        import {createCard} from 'expenseCard';
+                        document.getElementsByClassName('cardspanel')[0].appendChild(createCard());
+                    </script>
+                </div>
+                
             </div>
             <div class="gastos-fixos">
                 <h3 class="dashboard-title"> Gastos Fixos</h3>
