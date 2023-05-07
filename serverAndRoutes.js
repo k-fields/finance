@@ -19,18 +19,14 @@ function handleRequest(req,res) {
         route(req,res);
     }else if (pathname){
         try{
-            console.log(`Looking for: ${pathname}`);
+            console.log(`GET ${req.url}`);
             const file = fs.readFileSync('.'+pathname,'utf-8');
             res.end(file);
         }
         catch (e){
-            console.error(`File ${pathname} not found.`)
+            res.writeHead(404,{'Content-Type':'text/plain'}); //This set the response code and type of content returned
+            res.end('Not found'); //Ends the request with this response
         }
-    }
-    else
-    {
-        res.writeHead(404,{'Content-Type':'text/plain'}); //This set the response code and type of content returned
-        res.end('Not found'); //Ends the request with this response
     }
 }
 
