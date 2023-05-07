@@ -1,17 +1,18 @@
 const expenses = require('./mockValues')
+const conn = require('./connectDB')
 
-let i = 1;
-while(true){
-    if (expenses[i]) {
-        let nome, data, pagamento = '';
+const userId = 1;
 
-        nome = expenses[i].nome;
-        data = expenses[i].data;
-        pagamento = expenses[i].pagamento;
-
-        console.log("Nome: " + nome +" | data: " + data + " | método de pagamento: "+pagamento)
-        
-        i++;
+const queryResult = conn.query('SELECT * FROM expenses WHERE user_id = ?',[userId], (err, result) => {
+    if (err){
+        console.error(err.sqlMessage);
     }
-    else break;
-}
+    else{
+        console.table(result)
+        return result;
+    }
+})
+
+conn.end();
+
+module.exports = queryResult;
