@@ -2,9 +2,11 @@
     /* border: 1px solid hotpink;  */
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
+    width:100vw;
     height:100vh;
     --header-height: 20vh;
 }
@@ -43,6 +45,10 @@ body {
     align-items:center;
 }
 
+.despesas-e-receitas{
+    border:1px solid hotpink;
+}
+
 .gastos-fixos {
     border-left:2px dashed black;
 }
@@ -53,4 +59,32 @@ body {
     width:100%;
     text-align: center;
     text-decoration:underline;
+}
+
+.cardspanel{
+    margin-top: .5rem;
+    height: 90%;
+    width: 80%;
+    /* border:2px solid black; */
+    padding:1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: flex-start;
+    overflow-x:scroll;
+}
+
+.card{
+    box-sizing: content-box;
+    max-width: 100%;
+    width:100%;
+    padding:.5rem;
+    max-height: 30%;
+    min-height:20%;
+    height:20%;
+    border:1px solid purple;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1 0 0;
 }
